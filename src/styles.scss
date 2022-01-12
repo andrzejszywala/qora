@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+    padding: 0;
+	height: 100%;
+}
+
+#outer-container {
+	display: table;
+	width: 100%;
+	height: 100%;
+    
+}
+
+#menubar {
+	display: table-row;
+	width: 100%;
+    border: black;
+}
+
+#sidebar {
+	display: table-cell;
+	width: 20%;
+	vertical-align: top;
+    border: black;
+}
+
+#content {
+	display: table-cell;
+	width: 80%;
+	vertical-align: top;
+    border: black;
+    background-color: blueviolet;
+}
