@@ -23,6 +23,21 @@
       "request": "launch",
       "url": "http://localhost:8080/index.html"
     },
+    
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chromium against localhost",
+      "url": "http://localhost:8080/index.html",
+      "webRoot": "${workspaceFolder}",
+      "runtimeExecutable": "chromium",
+      "runtimeArgs": [
+        "--new-window",
+        "-user-data-dir=\"/${workspaceFolder}/DevProfile\"",
+        "--remote-debugging-port=9222",
+        "--disable-background-networking"
+      ]
+  },
     {
       "command": "ng build --source-map --watch --configuration development",
       "name": "Angular watch",

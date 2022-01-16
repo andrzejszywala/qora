@@ -1,10 +1,5 @@
-import { Component } from '@angular/core';
-import {MenubarModule} from 'primeng/menubar';
-import {MenuItem, TreeNode} from 'primeng/api';
-import { NodeService } from './nodeservice';
-import { ProductService } from './productservice';
-import { Product } from './product';
-
+import { Component, ViewChild } from '@angular/core';
+import { NzFormatEmitEvent, NzTreeComponent, NzTreeNodeOptions } from 'ng-zorro-antd/tree';
 
 @Component({
   selector: 'app-root',
@@ -12,40 +7,60 @@ import { Product } from './product';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'qora';
-  items: MenuItem[];
-  files: TreeNode[] = [];
-  products: Product[] = [];
+  isCollapsed = false;
+  @ViewChild('nzTreeComponent', { static: false }) nzTreeComponent!: NzTreeComponent;
+  defaultCheckedKeys = ['10020'];
+  defaultSelectedKeys = ['10010'];
+  defaultExpandedKeys = ['100', '1001'];
 
-    constructor(
-            private nodeService: NodeService,
-            private productService: ProductService) {
-        this.nodeService.getFiles().then(files => this.files = files);
-        this.productService.getProductsSmall().then(data => this.products = data);
-        
-        this.items = [
-            {
-                label: 'File',
-                items: [{
-                        label: 'New', 
-                        icon: 'pi pi-fw pi-plus',
-                        items: [
-                            {label: 'Project'},
-                            {label: 'Other'},
-                        ]
-                    },
-                    {label: 'Open'},
-                    {label: 'Quit'}
-                ]
-            },
-            {
-                label: 'Edit',
-                icon: 'pi pi-fw pi-pencil',
-                items: [
-                    {label: 'Delete', icon: 'pi pi-fw pi-trash'},
-                    {label: 'Refresh', icon: 'pi pi-fw pi-refresh'}
-                ]
-            }
-        ];
+  nodes: NzTreeNodeOptions[] = [
+    {
+      title: 'parent 1',
+      key: '100',
+      children: [
+        {
+          title: 'parent 1-0',
+          key: '1001',
+          disabled: true,
+          children: [
+            { title: 'leaf 1-0-0', key: '10010', disableCheckbox: true, isLeaf: true },
+            { title: 'leaf 1-0-1', key: '10011', isLeaf: true }
+          ]
+        },
+        {
+          title: 'parent 1-1',
+          key: '1002',
+          children: [
+            { title: 'leaf 1-1-0', key: '10020', isLeaf: true },
+            { title: 'leaf 1-1-1', key: '10021', isLeaf: true }
+          ]
+        }
+      ]
     }
+  ];
+
+  nzClick(event: NzFormatEmitEvent): void {
+    console.log(event);
+  }
+
+  nzCheck(event: NzFormatEmitEvent): void {
+    console.log(event);
+  }
+
+  // nzSelectedKeys change
+  nzSelect(keys: string[]): void {
+    console.log(keys, this.nzTreeComponent.getSelectedNodeList());
+  }
+
+  ngAfterViewInit(): void {
+    // get node by key: '10011'
+    console.log(this.nzTreeComponent.getTreeNodeByKey('10011'));
+    // use tree methods
+    console.log(
+      this.nzTreeComponent.getTreeNodes(),
+      this.nzTreeComponent.getCheckedNodeList(),
+      this.nzTreeComponent.getSelectedNodeList(),
+      this.nzTreeComponent.getExpandedNodeList()
+    );
+  }
 }
