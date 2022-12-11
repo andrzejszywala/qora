@@ -30,6 +30,9 @@ import { ProfilesResource } from './business/oracle/profiles/boundary/profiles.r
 import { RolesResource } from './business/oracle/roles/boundary/roles.resource';
 import { TablesResource } from './business/oracle/tables/boundary/tables.resource';
 import { IndexesResource } from './business/oracle/indexes/boundary/indexes.resource';
+import { ViewsResource } from './business/oracle/views/boundary/views.resource';
+import { SynonymsResource } from './business/oracle/synonyms/boundary/synonyms.resource';
+import { SequencesResource } from './business/oracle/sequences/boundary/sequences.resource';
 
 registerLocaleData(en);
 
@@ -61,7 +64,7 @@ registerLocaleData(en);
     MonacoEditorModule.forRoot()
   ],
   providers: [SqlResource, SessionsResource, ProductService, UsersResource, ProfilesResource, RolesResource,
-  	TablesResource, IndexesResource],
+  	TablesResource, IndexesResource, ViewsResource, SynonymsResource, SequencesResource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

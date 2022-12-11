@@ -19,7 +19,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 			query =	"""
 			   SELECT v 
 				 FROM View v
-				WHERE v.owner = ?1""")
+				WHERE v.owner = ?1
+				ORDER BY v.viewName """)
 })
 @Entity
 @Table(name = "DBA_VIEWS")

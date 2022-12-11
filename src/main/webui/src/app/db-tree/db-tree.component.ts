@@ -8,6 +8,9 @@ import { UsersResource } from "../business/oracle/users/boundary/users.resource"
 import { TablesResource } from "../business/oracle/tables/boundary/tables.resource";
 import { IndexesResource } from "../business/oracle/indexes/boundary/indexes.resource";
 import { User } from "../business/oracle/users/entity/user";
+import { ViewsResource } from "../business/oracle/views/boundary/views.resource";
+import { SynonymsResource } from "../business/oracle/synonyms/boundary/synonyms.resource";
+import { SequencesResource } from "../business/oracle/sequences/boundary/sequences.resource";
 
 @Component({
 	selector: 'q-db-tree',
@@ -84,7 +87,10 @@ export class DbTreeComponent {
 		private profilesResource: ProfilesResource,
 		private rolesResource: RolesResource,
 		private tablesResource: TablesResource,
-		private indexesResource: IndexesResource) { }
+		private indexesResource: IndexesResource,
+		private viewsResource: ViewsResource,
+		private synonymsResource: SynonymsResource,
+		private sequencesResource: SequencesResource) { }
 
 
 	loadNode(event: any) {
@@ -125,6 +131,27 @@ export class DbTreeComponent {
 				return {
 					label: i.indexName,
 					data: i
+				};
+			}));
+		} else if (event.node.label === 'Views') {
+			this.viewsResource.views(event.node.data.userName).subscribe(views => event.node.children = views.map(v => {
+				return {
+					label: v.viewName,
+					data: v
+				};
+			}));
+		} else if (event.node.label === 'Synonyms') {
+			this.synonymsResource.synonyms(event.node.data.userName).subscribe(synonyms => event.node.children = synonyms.map(s => {
+				return {
+					label: s.synonymName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Sequences') {
+			this.sequencesResource.sequences(event.node.data.userName).subscribe(sequences => event.node.children = sequences.map(s => {
+				return {
+					label: s.sequenceName,
+					data: s
 				};
 			}));
 		}

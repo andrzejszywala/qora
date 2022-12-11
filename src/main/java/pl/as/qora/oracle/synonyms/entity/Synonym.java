@@ -19,7 +19,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 			query =	"""
 			   SELECT s 
 				 FROM Synonym s
-				WHERE s.owner = ?1""")
+				WHERE s.owner = ?1
+				ORDER BY s.synonymName """)
 
 })
 @Entity
