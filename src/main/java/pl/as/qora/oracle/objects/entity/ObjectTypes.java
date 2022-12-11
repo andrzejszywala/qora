@@ -1,0 +1,47 @@
+package pl.as.qora.oracle.objects.entity;
+
+public interface ObjectTypes {
+	static final String TABLE = "TABLE";
+	static final String CLUSTER = "";
+	static final String INDEX = "CLUSTER";
+	static final String SEQUENCE = "SEQUENCE";
+	static final String LOB = "LOB";
+	static final String EDITION = "EDITION";
+	static final String SYNONYM = "SYNONYM";
+	static final String CONTAINER = "CONTAINER";
+	static final String TYPE = "TYPE";
+	static final String DIRECTORY = "DIRECTORY";
+	static final String PACKAGE = "PACKAGE";
+	static final String PACKAGE_BODY = "PACKAGE BODY";
+	static final String VIEW = "VIEW";
+	static final String LIBRARY = "LIBRARY";
+	static final String FUNCTION = "FUNCTION";
+	static final String PROCEDURE = "PROCEDURE";
+	static final String CONTEXT = "CONTEXT";
+	static final String OPERATOR = "OPERATOR";
+	static final String TABLE_PARTITION = "TABLE PARTITION";
+	static final String INDEX_PARTITION = "INDEX PARTITION";
+	static final String LOB_PARTITION = "LOB PARTITION";
+	static final String TYPE_BODY = "TYPE BODY";
+	static final String UNIFIED_AUDIT_POLICY = "UNIFIED AUDIT POLICY";
+	static final String LOCKDOWN_PROFILE = "LOCKDOWN PROFILE";
+	static final String TRIGGER = "TRIGGER";
+	static final String TABLE_SUBPARTITION = "TABLE SUBPARTITION";
+	static final String MLE_LANGUAGE = "MLE LANGUAGE";
+	static final String UNDEFINED = "UNDEFINED";
+	static final String CONSUMER_GROUP = "CONSUMER GROUP";
+	static final String RESOURCE_PLAN = "RESOURCE PLAN";
+	static final String JOB_CLASS = "JOB CLASS";
+	static final String DESTINATION = "DESTINATION";
+	static final String PROGRAM = "PROGRAM";
+	static final String SCHEDULE = "SCHEDULE";
+	static final String JOB = "JOB";
+	static final String EVALUATION_CONTEXT = "EVALUATION CONTEXT";
+	static final String QUEUE = "QUEUE";
+	static final String RULE_SET = "RULE SET";
+	static final String WINDOW = "WINDOW";
+	static final String SCHEDULER_GROUP = "SCHEDULER GROUP";
+	static final String RULE = "SCHEDULER GROUP";
+	static final String XML_SCHEMA = "XML SCHEMA";
+	static final String INDEXTYPE = "INDEXTYPE";
+}
