@@ -11,6 +11,10 @@ import { User } from "../business/oracle/users/entity/user";
 import { ViewsResource } from "../business/oracle/views/boundary/views.resource";
 import { SynonymsResource } from "../business/oracle/synonyms/boundary/synonyms.resource";
 import { SequencesResource } from "../business/oracle/sequences/boundary/sequences.resource";
+import { PackagesResource } from "../business/oracle/packages/boundary/packages.resource";
+import { ProceduresResource } from "../business/oracle/procedures/boundary/procedures.resource";
+import { FunctionsResource } from "../business/oracle/functions/boundary/functions.resource";
+import { TriggersResource } from "../business/oracle/triggers/boundary/triggers.resource";
 
 @Component({
 	selector: 'q-db-tree',
@@ -90,7 +94,11 @@ export class DbTreeComponent {
 		private indexesResource: IndexesResource,
 		private viewsResource: ViewsResource,
 		private synonymsResource: SynonymsResource,
-		private sequencesResource: SequencesResource) { }
+		private sequencesResource: SequencesResource,
+		private packagesResource: PackagesResource,
+		private proceduresResource: ProceduresResource,
+		private functionsResource: FunctionsResource,
+		private triggersResource: TriggersResource) { }
 
 
 	loadNode(event: any) {
@@ -154,7 +162,36 @@ export class DbTreeComponent {
 					data: s
 				};
 			}));
+		} else if (event.node.label === 'Packages') {
+			this.packagesResource.packages(event.node.data.userName).subscribe(packages => event.node.children = packages.map(s => {
+				return {
+					label: s.objectName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Procedures') {
+			this.proceduresResource.procedures(event.node.data.userName).subscribe(procedures => event.node.children = procedures.map(s => {
+				return {
+					label: s.objectName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Functions') {
+			this.functionsResource.functions(event.node.data.userName).subscribe(functions => event.node.children = functions.map(s => {
+				return {
+					label: s.objectName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Triggers') {
+			this.triggersResource.triggers(event.node.data.userName).subscribe(triggers => event.node.children = triggers.map(s => {
+				return {
+					label: s.objectName,
+					data: s
+				};
+			}));
 		}
+
 	}
 
 	createSchemaNode(user: User, parent: TreeNode): TreeNode<User> {

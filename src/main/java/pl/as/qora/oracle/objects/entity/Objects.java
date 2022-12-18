@@ -19,7 +19,8 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 			   SELECT o 
 				 FROM Objects o
 				WHERE o.owner = ?1
-				  AND o.objectType = ?2"""),
+				  AND o.objectType = ?2
+				ORDER BY o.objectName """),
 	@NamedQuery(name = "Objects.findByNameUserAndType", 
 		query =	"""
 		   SELECT o 
