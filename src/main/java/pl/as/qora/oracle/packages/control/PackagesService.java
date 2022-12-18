@@ -19,4 +19,8 @@ public class PackagesService {
         return objectsService.userObjects(user, ObjectTypes.PACKAGE);
     }
     
+	public Objects packageBody(String user, String name) {
+		return objectsService.objectByUserNameAndType(user, name, ObjectTypes.PACKAGE_BODY);
+	}
+    
 }

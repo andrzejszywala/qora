@@ -12,4 +12,8 @@ public class ObjectsService {
     public Collection<Objects> userObjects(String user, String type) {
         return Objects.findByUserAndType(user, type);
     }
+    
+    public Objects objectByUserNameAndType(String user, String name, String type) {
+        return Objects.findByUserNameAndType(user, name, type);
+    }
 }

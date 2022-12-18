@@ -19,8 +19,14 @@ import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 			   SELECT o 
 				 FROM Objects o
 				WHERE o.owner = ?1
-				  AND o.objectType = ?2""")
-
+				  AND o.objectType = ?2"""),
+	@NamedQuery(name = "Objects.findByNameUserAndType", 
+		query =	"""
+		   SELECT o 
+			 FROM Objects o
+			WHERE o.owner = ?1
+			  AND o.objectName = ?2
+			  AND o.objectType = ?3""")
 })
 @Entity
 @Table(name = "DBA_OBJECTS")
@@ -49,5 +55,9 @@ public class Objects extends PanacheEntityBase {
 
 	public static List<Objects> findByUserAndType(String user, String type) {
 		return find("#Objects.findByUserAndType", user, type).list();
+	}
+	
+	public static Objects findByUserNameAndType(String user, String name, String type) {
+		return find("#Objects.findByNameUserAndType", user, name, type).firstResult();
 	}
 }

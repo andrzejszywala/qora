@@ -20,4 +20,10 @@ public class PackagesResource {
     public Collection<Objects> packages(@QueryParam("user") String user) {
         return packagesService.userPackages(user);
     }
+    
+    @GET
+    @Path("body")
+    public Objects packageBody(@QueryParam("user") String user, @QueryParam("name") String name) {
+        return packagesService.packageBody(user, name);
+    }
 }
