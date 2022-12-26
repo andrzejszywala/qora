@@ -13,12 +13,12 @@
     <div class="layout-content">
       
       <p-tabView styleClass="tabs">
-        <p-tabPanel header="Header 1">
+        <p-tabPanel header="SQL">
           <div class="buttons-wrapper">
             <p-button styleClass="command-button" label="Execute" (click)="onExecuteSql()"></p-button>
             <p-button styleClass="command-button" label="Explain plan"></p-button>
           </div>
-          <ngx-monaco-editor style="height: 400px" [options]="editorOptions" [(ngModel)]="sql"></ngx-monaco-editor>
+          <ngx-monaco-editor style="height: 300px" [options]="editorOptions" [(ngModel)]="sql"></ngx-monaco-editor>
 
           <p-tabView>
             <p-tabPanel header="Results">
@@ -39,11 +39,8 @@
                 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
             </p-tabPanel>
             <p-tabPanel header="OUTPUT">
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
-                cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et
-                dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-                Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+              <p-dbms-output></p-dbms-output>
+
             </p-tabPanel>
           </p-tabView>
 

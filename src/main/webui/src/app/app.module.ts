@@ -37,6 +37,11 @@ import { PackagesResource } from './business/oracle/packages/boundary/packages.r
 import { ProceduresResource } from './business/oracle/procedures/boundary/procedures.resource';
 import { FunctionsResource } from './business/oracle/functions/boundary/functions.resource';
 import { TriggersResource } from './business/oracle/triggers/boundary/triggers.resource';
+import { TablespacesResource } from './business/oracle/tablespaces/boundary/tablespaces.resource';
+import { FilesResource } from './business/oracle/files/boundary/files.resource';
+import { DbmsOutputComponent } from './dbms-output/dbms-output.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 
 registerLocaleData(en);
 
@@ -46,9 +51,11 @@ registerLocaleData(en);
     MessagesComponent,
     QueryResultsComponent,
     ExplainPlanComponent, 
-    DbTreeComponent
+    DbTreeComponent,
+    DbmsOutputComponent
   ],
   imports: [
+    InputTextareaModule,
     ScrollPanelModule,
     TableModule,
     DividerModule,
@@ -69,7 +76,8 @@ registerLocaleData(en);
   ],
   providers: [SqlResource, SessionsResource, ProductService, UsersResource, ProfilesResource, RolesResource,
   	TablesResource, IndexesResource, ViewsResource, SynonymsResource, SequencesResource,
-    PackagesResource, ProceduresResource, FunctionsResource, TriggersResource],
+    PackagesResource, ProceduresResource, FunctionsResource, TriggersResource, TablespacesResource,
+    FilesResource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

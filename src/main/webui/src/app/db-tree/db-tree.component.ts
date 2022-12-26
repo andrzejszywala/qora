@@ -15,6 +15,8 @@ import { PackagesResource } from "../business/oracle/packages/boundary/packages.
 import { ProceduresResource } from "../business/oracle/procedures/boundary/procedures.resource";
 import { FunctionsResource } from "../business/oracle/functions/boundary/functions.resource";
 import { TriggersResource } from "../business/oracle/triggers/boundary/triggers.resource";
+import { TablespacesResource } from "../business/oracle/tablespaces/boundary/tablespaces.resource";
+import { FilesResource } from "../business/oracle/files/boundary/files.resource";
 
 @Component({
 	selector: 'q-db-tree',
@@ -66,6 +68,50 @@ export class DbTreeComponent {
 		children: [this.usersNode, this.profilesNode, this.rolesNode]
 	};
 
+	private controlFileNode: TreeNode = {
+		label: "Control File",
+		expandedIcon: "pi pi-file",
+		collapsedIcon: "pi pi-file",
+		leaf: true
+	};
+
+	private tablespacesNode: TreeNode = {
+		label: "Tablespaces",
+		expandedIcon: "pi pi-folder-open",
+		collapsedIcon: "pi pi-folder",
+		leaf: false
+	};
+
+	private dataFilesNode: TreeNode = {
+		label: "Data files",
+		expandedIcon: "pi pi-folder-open",
+		collapsedIcon: "pi pi-folder",
+		leaf: false
+	};
+
+	private rollbackSegmentsNode: TreeNode = {
+		label: "Rollback segments",
+		expandedIcon: "pi pi-folder-open",
+		collapsedIcon: "pi pi-folder",
+		leaf: false
+	};
+
+	private redoLogFilesNode: TreeNode = {
+		label: "Redo Log files",
+		expandedIcon: "pi pi-folder-open",
+		collapsedIcon: "pi pi-folder",
+		leaf: false
+	};
+
+	private storageNode: TreeNode = {
+		label: "Storage",
+		expandedIcon: "pi pi-folder-open",
+		collapsedIcon: "pi pi-folder",
+		leaf: false,
+		children: [this.controlFileNode, this.tablespacesNode, this.dataFilesNode, this.rollbackSegmentsNode, 
+			this.redoLogFilesNode]
+	};
+
 	files: TreeNode[] = [
 		{
 			label: "Instance",
@@ -78,11 +124,7 @@ export class DbTreeComponent {
 		},
 		this.schemasNode,
 		this.securityNode,
-		{
-			label: "Storage",
-			expandedIcon: "pi pi-folder-open",
-			collapsedIcon: "pi pi-folder"
-		}
+		this.storageNode
 	];
 
 
@@ -98,7 +140,9 @@ export class DbTreeComponent {
 		private packagesResource: PackagesResource,
 		private proceduresResource: ProceduresResource,
 		private functionsResource: FunctionsResource,
-		private triggersResource: TriggersResource) { }
+		private triggersResource: TriggersResource,
+		private tablespacesResource: TablespacesResource,
+		private filesResource: FilesResource) { }
 
 
 	loadNode(event: any) {
@@ -190,9 +234,24 @@ export class DbTreeComponent {
 					data: s
 				};
 			}));
-		}
+		} else if (event.node.label === 'Tablespaces') {
+			this.tablespacesResource.tablespaces().subscribe(tablespaces => event.node.children = tablespaces.map(s => {
+				return {
+					label: s.tablespaceName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Data files') {
+			this.filesResource.files().subscribe(files => event.node.children = files.map(s => {
+				return {
+					label: s.fileName,
+					data: s
+				};
+			}));
+		} 
 
 	}
+
 
 	createSchemaNode(user: User, parent: TreeNode): TreeNode<User> {
 		let tablesNode: TreeNode = {
@@ -202,7 +261,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let indexesNode: TreeNode = {
 			label: "Indexes",
@@ -211,7 +270,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let viewsNode: TreeNode = {
 			label: "Views",
@@ -220,7 +279,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let synonymsNode: TreeNode = {
 			label: "Synonyms",
@@ -229,7 +288,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let sequencesNode: TreeNode = {
 			label: "Sequences",
@@ -238,7 +297,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let clustersNode: TreeNode = {
 			label: "Clusters",
@@ -247,7 +306,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let packagesNode: TreeNode = {
 			label: "Packages",
@@ -256,7 +315,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let packagesBodyNode: TreeNode = {
 			label: "Packages body",
@@ -265,7 +324,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let proceduresNode: TreeNode = {
 			label: "Procedures",
@@ -274,7 +333,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let functionsNode: TreeNode = {
 			label: "Functions",
@@ -283,7 +342,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		let triggersNode: TreeNode = {
 			label: "Triggers",
@@ -292,7 +351,7 @@ export class DbTreeComponent {
 			leaf: false,
 			parent: parent,
 			data: user
-		}
+		};
 
 		return {
 			label: user.userName,

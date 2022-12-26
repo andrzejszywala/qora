@@ -43,7 +43,7 @@ export class AppComponent {
 	defaultExpandedKeys = ['100', '1001'];
 	sql: string = "";
 	dataSet: ZbiorDanych[] = [];
-	editorOptions = { theme: 'vs-light', language: 'sql' };
+	editorOptions = { theme: 'vs-dark', language: 'sql' };
 	contentHeight = 400;
 
 	messages: string[] = [];
