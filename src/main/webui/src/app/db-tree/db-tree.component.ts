@@ -17,6 +17,8 @@ import { FunctionsResource } from "../business/oracle/functions/boundary/functio
 import { TriggersResource } from "../business/oracle/triggers/boundary/triggers.resource";
 import { TablespacesResource } from "../business/oracle/tablespaces/boundary/tablespaces.resource";
 import { FilesResource } from "../business/oracle/files/boundary/files.resource";
+import { RollbackSegmentsResource } from "../business/oracle/rollback-segments/boundary/rollback-segments.resource";
+
 
 @Component({
 	selector: 'q-db-tree',
@@ -142,7 +144,8 @@ export class DbTreeComponent {
 		private functionsResource: FunctionsResource,
 		private triggersResource: TriggersResource,
 		private tablespacesResource: TablespacesResource,
-		private filesResource: FilesResource) { }
+		private filesResource: FilesResource,
+		private rollbackSegmentsResource: RollbackSegmentsResource) { }
 
 
 	loadNode(event: any) {
@@ -245,6 +248,20 @@ export class DbTreeComponent {
 			this.filesResource.files().subscribe(files => event.node.children = files.map(s => {
 				return {
 					label: s.fileName,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Redo Log files') {
+			this.filesResource.logFiles().subscribe(files => event.node.children = files.map(s => {
+				return {
+					label: s.member,
+					data: s
+				};
+			}));
+		} else if (event.node.label === 'Rollback segments') {
+			this.rollbackSegmentsResource.rollbackSegments().subscribe(segs => event.node.children = segs.map(s => {
+				return {
+					label: s.segmentName,
 					data: s
 				};
 			}));

@@ -44,6 +44,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SliderModule } from 'primeng/slider';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { RollbackSegmentsResource } from './business/oracle/rollback-segments/boundary/rollback-segments.resource';
 
 registerLocaleData(en);
 
@@ -82,7 +83,7 @@ registerLocaleData(en);
   providers: [SqlResource, SessionsResource, ProductService, UsersResource, ProfilesResource, RolesResource,
   	TablesResource, IndexesResource, ViewsResource, SynonymsResource, SequencesResource,
     PackagesResource, ProceduresResource, FunctionsResource, TriggersResource, TablespacesResource,
-    FilesResource],
+    FilesResource, RollbackSegmentsResource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
