@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javax.enterprise.context.ApplicationScoped;
 
 import pl.as.qora.oracle.files.entity.DataFile;
+import pl.as.qora.oracle.files.entity.LogFile;
 import pl.as.qora.oracle.files.entity.OracleFile;
 import pl.as.qora.oracle.files.entity.TempFile;
 
@@ -20,6 +21,14 @@ public class FilesService {
     	return files
     			.stream()
     			.sorted(Comparator.comparing(f -> f.fileName))
+    			.collect(Collectors.toList());
+    }
+    
+    public Collection<LogFile> logFiles() {
+    	List<LogFile> files = LogFile.listAll();
+    	return files
+    			.stream()
+    			.sorted(Comparator.comparing(f -> f.member))
     			.collect(Collectors.toList());
     }
 }

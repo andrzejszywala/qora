@@ -41,6 +41,7 @@ import { TablespacesResource } from './business/oracle/tablespaces/boundary/tabl
 import { FilesResource } from './business/oracle/files/boundary/files.resource';
 import { DbmsOutputComponent } from './dbms-output/dbms-output.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { RollbackSegmentsResource } from './business/oracle/rollback-segments/boundary/rollback-segments.resource';
 
 
 registerLocaleData(en);
@@ -77,7 +78,7 @@ registerLocaleData(en);
   providers: [SqlResource, SessionsResource, ProductService, UsersResource, ProfilesResource, RolesResource,
   	TablesResource, IndexesResource, ViewsResource, SynonymsResource, SequencesResource,
     PackagesResource, ProceduresResource, FunctionsResource, TriggersResource, TablespacesResource,
-    FilesResource],
+    FilesResource, RollbackSegmentsResource],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
