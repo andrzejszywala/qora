@@ -1,8 +1,29 @@
+<p-dialog header="Output buffer size" [(visible)]="displayBufferSizeDialog" [style]="{width: '20vw'}">
+    Size in bytes <p-inputNumber [(ngModel)]="bufferSize"></p-inputNumber>
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="changeBufferSize()" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-times" (click)="displayBufferSizeDialog=false" label="Cancel"></p-button>
+    </ng-template>
+</p-dialog>
 <p-toolbar>
     <div class="p-toolbar-group-left">
-        <p-button icon="pi pi-search" class="mr-2"></p-button>
-        <p-button icon="pi pi-calendar" styleClass="p-button-success mr-2"></p-button>
-        <p-button icon="pi pi-times" styleClass="p-button-danger"></p-button>
+        <p-button icon="pi pi-play" pTooltip="on/off server output"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-button icon="pi pi-clock" pTooltip="on/off output polling"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-button icon="pi pi-times" pTooltip="clean output"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-button icon="pi pi-hashtag" pTooltip="change buffer size" (click)="showBufferSizeDialog()"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-button icon="pi pi-save" pTooltip="save output to file"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-button icon="pi pi-print" pTooltip="print"></p-button>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <span>polling<br>frequency</span>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <p-slider [(ngModel)]="pollingFrequency" [min]="1" [max]="20" style="width: 100px"></p-slider>
+        <i class="p-toolbar-separator" style="vertical-align: middle"></i>
+        <span>{{pollingFrequency}} sec.</span>
     </div>
 </p-toolbar>
 <textarea rows="10" cols="30" style="width: 100%" pInputTextarea></textarea>

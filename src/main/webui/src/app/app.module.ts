@@ -41,7 +41,9 @@ import { TablespacesResource } from './business/oracle/tablespaces/boundary/tabl
 import { FilesResource } from './business/oracle/files/boundary/files.resource';
 import { DbmsOutputComponent } from './dbms-output/dbms-output.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { SliderModule } from 'primeng/slider';
+import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 registerLocaleData(en);
 
@@ -72,6 +74,9 @@ registerLocaleData(en);
     HttpClientModule,
     ScrollingModule,
     FormsModule,
+    SliderModule,
+    DialogModule,
+    InputNumberModule,
     MonacoEditorModule.forRoot()
   ],
   providers: [SqlResource, SessionsResource, ProductService, UsersResource, ProfilesResource, RolesResource,

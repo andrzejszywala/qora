@@ -7,9 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DbmsOutputComponent implements OnInit {
 
+  pollingFrequency: number = 5;
+  displayBufferSizeDialog: boolean = false;
+  currentBufferSize: number = 20000;
+  bufferSize: number = this.currentBufferSize;
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showBufferSizeDialog() {
+    this.bufferSize = this.currentBufferSize;
+    this.displayBufferSizeDialog = true;
+  }
+
+  changeBufferSize() {
+    this.currentBufferSize = this.bufferSize;
+    this.displayBufferSizeDialog = false;
+  }
 }
