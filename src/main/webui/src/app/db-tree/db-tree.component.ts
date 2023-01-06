@@ -392,4 +392,7 @@ export class DbTreeComponent {
 
 	}
 
+	nodeSelected(event: any) {
+		
+	}
 }

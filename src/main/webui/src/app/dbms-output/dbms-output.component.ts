@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'p-dbms-output',
@@ -26,5 +26,10 @@ export class DbmsOutputComponent implements OnInit {
   changeBufferSize() {
     this.currentBufferSize = this.bufferSize;
     this.displayBufferSizeDialog = false;
+  }
+
+  printOutput() {
+
+
   }
 }

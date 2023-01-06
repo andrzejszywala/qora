@@ -1,3 +1,4 @@
+
 <p-dialog header="Output buffer size" [(visible)]="displayBufferSizeDialog" [style]="{width: '20vw'}">
     Size in bytes <p-inputNumber [(ngModel)]="bufferSize"></p-inputNumber>
     <ng-template pTemplate="footer">
@@ -17,11 +18,11 @@
         <i class="p-toolbar-separator" style="vertical-align: middle"></i>
         <p-button icon="pi pi-save" pTooltip="save output to file"></p-button>
         <i class="p-toolbar-separator" style="vertical-align: middle"></i>
-        <p-button icon="pi pi-print" pTooltip="print"></p-button>
+        <p-button icon="pi pi-print" pTooltip="print" (click)="printOutput()"></p-button>
         <i class="p-toolbar-separator" style="vertical-align: middle"></i>
         <span>polling<br>frequency</span>
         <i class="p-toolbar-separator" style="vertical-align: middle"></i>
-        <p-slider [(ngModel)]="pollingFrequency" [min]="1" [max]="20" style="width: 100px"></p-slider>
+        <p-slider [(ngModel)]="pollingFrequency" [min]="1" [max]="20" [style]="{'width': '100px'}"></p-slider>
         <i class="p-toolbar-separator" style="vertical-align: middle"></i>
         <span>{{pollingFrequency}} sec.</span>
     </div>
